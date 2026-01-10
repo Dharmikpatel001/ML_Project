@@ -17,10 +17,11 @@ st.title("🌫 Air Quality Index (AQI) Predictor")
 st.write("Enter air pollutant values to predict AQI")
 
 # User Inputs
-pm25 = st.number_input("PM2.5", min_value=0.0)
-pm10 = st.number_input("PM10", min_value=0.0)
-no2 = st.number_input("NO2", min_value=0.0)
-co = st.number_input("CO", min_value=0.0)
+pm25_aqi = st.number_input("PM2.5 AQI (0–500)", min_value=0, max_value=500)
+no2_aqi = st.number_input("NO2 AQI (0–500)", min_value=0, max_value=500)
+co_aqi = st.number_input("CO AQI (0–500)", min_value=0, max_value=500)
+ozone_aqi = st.number_input("Ozone AQI (0–500)", min_value=0, max_value=500)
+
 if st.button("Predict AQI"):
     input_data = np.array([[pm25, pm10, no2, co]])
     prediction = model.predict(input_data)
@@ -30,9 +31,13 @@ if st.button("Predict AQI"):
     # AQI Category
     if prediction <= 50:
         st.info("Good 🟢")
-    elif prediction <= 100:
-        st.warning("Moderate 🟡")
-    elif prediction <= 200:
-        st.warning("Poor 🟠")
+    elif prediction >=51 and prediction <=100:
+        st.info("Satisfactory 🟡")
+    elif prediction >= 101 and prediction <= 200:
+        st.warning("Moderate 🟠")
+    elif prediction >= 201 and prediction <= 300:
+        st.warning("Poor 🔴")
+    elif prediction >= 301 and prediction <= 400:
+        st.warning("Very Poor 🟣")
     else:
-        st.error("Severe 🔴")
+        st.error("Severe ⚫")
