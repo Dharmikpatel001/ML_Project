@@ -10,6 +10,7 @@ import pickle
 import requests
 
 API_KEY = "H5xk0RZo4oX3kf7f5t8aJA8kVK6GV77bmxUSz561"
+
 # Load trained model
 model = pickle.load(open("aqi_model.pkl", "rb"))
 
