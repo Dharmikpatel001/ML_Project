@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 
 import pickle
-import numpy as np
 
 # Load trained model
 model = pickle.load(open("aqi_model.pkl", "rb"))
