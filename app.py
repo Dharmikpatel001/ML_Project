@@ -94,6 +94,20 @@ if st.button("Fetch & Predict AQI"):
         st.success(f"🔮 Predicted AQI: {int(predicted_aqi)}")
         st.info(f"📡 Actual AQI (API): {real_aqi}")
 
+        if predicted_aqi <= 50:
+            st.info("Good 🟢")
+        elif predicted_aqi >=51 and predicted_aqi <=100:
+            st.info("Moderate 🟡")
+        elif predicted_aqi >= 101 and predicted_aqi <= 150:
+            st.warning("Poor🟠")
+        elif predicted_aqi >= 151 and predicted_aqi <= 200:
+            st.warning("Unhealthy  🟤")
+        elif predicted_aqi >= 201 and predicted_aqi <= 300:
+            st.warning("Severe 🟣")
+        else:
+            st.error("Hazardous 🔴")
+
+
         st.subheader("Pollutant AQI Values")
         st.write({
             "CO AQI": co_aqi,
