@@ -11,7 +11,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(page_title="AQI Prediction App", layout="wide")
 
-st.title("🌫️ AQI Prediction Using Machine Learning")
+st.title("AQI Prediction Using Machine Learning")
 
 # -------------------- DATA UPLOAD --------------------
 uploaded_file = st.file_uploader("Upload AQI CSV File", type=["csv"])
@@ -19,7 +19,7 @@ uploaded_file = st.file_uploader("Upload AQI CSV File", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
-    st.subheader("📊 Dataset Preview")
+    st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
     # -------------------- TARGET SELECTION --------------------
@@ -53,7 +53,7 @@ if uploaded_file is not None:
         y_pred = model.predict(X_test)
 
         # -------------------- METRICS --------------------
-        st.subheader("📈 Model Performance")
+        st.subheader("Model Performance")
 
         col1, col2, col3 = st.columns(3)
 
@@ -62,7 +62,7 @@ if uploaded_file is not None:
         col3.metric("R² Score", round(r2_score(y_test, y_pred), 2))
 
         # -------------------- PLOT --------------------
-        st.subheader("📉 Actual vs Predicted AQI")
+        st.subheader("Actual vs Predicted AQI")
 
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.plot(y_test.values, label="Actual AQI")
@@ -74,4 +74,4 @@ if uploaded_file is not None:
         st.pyplot(fig)
 
 else:
-    st.info("👆 Upload a CSV file to get started")
+    st.info("Upload a CSV file to get started")
