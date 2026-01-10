@@ -1,9 +1,9 @@
 import streamlit as st
 import numpy as np
-import pickle
+import joblib
 
 # Load trained model
-model = pickle.load(open("aqi_model.pkl", "rb"))
+model = joblib.load("aqi_model.joblib")
 
 st.set_page_config(page_title="AQI Predictor", layout="centered")
 
