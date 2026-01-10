@@ -37,15 +37,15 @@ if st.button("Predict AQI"):
     if prediction <= 50:
         st.info("Good 🟢")
     elif prediction >=51 and prediction <=100:
-        st.info("Satisfactory 🟡")
-    elif prediction >= 101 and prediction <= 200:
-        st.warning("Moderate 🟠")
+        st.info("Moderate 🟡")
+    elif prediction >= 101 and prediction <= 150:
+        st.warning("Poor🟠")
+    elif prediction >= 151 and prediction <= 200:
+        st.warning("Unhealthy  🟤")
     elif prediction >= 201 and prediction <= 300:
-        st.warning("Poor 🔴")
-    elif prediction >= 301 and prediction <= 400:
-        st.warning("Very Poor 🟣")
+        st.warning("Severe 🟣")
     else:
-        st.error("Severe ⚫")
+        st.error("Hazardous 🔴")
 
 
 st.set_page_config(page_title="Live AQI Predictor", layout="centered")
