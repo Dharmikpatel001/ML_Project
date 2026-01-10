@@ -20,13 +20,15 @@ st.title("🌫 Air Quality Index (AQI) Predictor")
 st.write("Enter air pollutant values to predict AQI")
 
 # User Inputs
-pm25_aqi = st.number_input("PM2.5 AQI (0–500)", min_value=0, max_value=500)
-no2_aqi = st.number_input("NO2 AQI (0–500)", min_value=0, max_value=500)
 co_aqi = st.number_input("CO AQI (0–500)", min_value=0, max_value=500)
 ozone_aqi = st.number_input("Ozone AQI (0–500)", min_value=0, max_value=500)
+no2_aqi = st.number_input("NO2 AQI (0–500)", min_value=0, max_value=500)
+pm25_aqi = st.number_input("PM2.5 AQI (0–500)", min_value=0, max_value=500)
+
+
 
 if st.button("Predict AQI"):
-    input_data = np.array([[pm25, pm10, no2, co]])
+    input_data = np.array([[co_aqi,ozone_aqi,no2_aqi, pm25_aqi]])
     prediction = model.predict(input_data)
 
     st.success(f"Predicted AQI: {int(prediction[0])}")
