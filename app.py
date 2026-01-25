@@ -48,7 +48,7 @@ if st.button("Predict AQI"):
         st.error("Hazardous 🔴")
 
 
-st.set_page_config(page_title="Live AQI Predictor", layout="centered")
+
 st.title("🌫 Live AQI Predictor (API-Ninjas)")
 st.write("Enter a city name to fetch live air quality data and predict AQI.")
 
