@@ -53,10 +53,8 @@ st.title("🌫 Live AQI Predictor (API-Ninjas)")
 st.write("Enter a city name to fetch live air quality data and predict AQI.")
 
 
-# -------- City Input --------
 city = st.text_input("City Name", "Delhi")
 
-# -------- Helper Functions --------
 def city_to_latlon(city):
     url = f"https://api.api-ninjas.com/v1/geocoding?city={city}"
     headers = {"X-Api-Key": API_KEY}
@@ -68,31 +66,24 @@ def fetch_aqi(lat, lon):
     headers = {"X-Api-Key": API_KEY}
     return requests.get(url, headers=headers).json()
 
-# -------- Button Action --------
 if st.button("Fetch & Predict AQI"):
     try:
-        # Convert city → lat/lon
         lat, lon = city_to_latlon(city)
 
-        # Fetch AQI data
         data = fetch_aqi(lat, lon)
 
-        # Extract AQI sub-indices (MODEL INPUTS)
         co_aqi   = data["CO"]["aqi"]
         o3_aqi   = data["O3"]["aqi"]
         no2_aqi  = data["NO2"]["aqi"]
         pm25_aqi = data["PM2.5"]["aqi"]
 
-        # Prepare input (ORDER MUST MATCH TRAINING)
         input_data = np.array([[co_aqi, o3_aqi, no2_aqi, pm25_aqi]])
 
-        # Predict AQI
         predicted_aqi = model.predict(input_data)[0]
         real_aqi = data["overall_aqi"]
-
         # -------- Display --------
-        st.success(f"🔮 Predicted AQI: {int(predicted_aqi)}")
-        st.info(f"📡 Actual AQI (API): {real_aqi}")
+        st.success(f"Predicted AQI: {int(predicted_aqi)}")
+        st.info(f"Actual AQI (API): {real_aqi}")
 
         if predicted_aqi <= 50:
             st.info("Good 🟢")
