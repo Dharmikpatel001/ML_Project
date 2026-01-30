@@ -16,7 +16,7 @@ model = pickle.load(open("aqi_model.pkl", "rb"))
 
 st.set_page_config(page_title="AQI Predictor", layout="centered")
 
-st.title("🌫 Air Quality Index (AQI) Predictor")
+st.title("Air Quality Index (AQI) Predictor")
 st.write("Enter air pollutant values to predict AQI")
 
 # User Inputs
@@ -49,7 +49,7 @@ if st.button("Predict AQI"):
 
 
 
-st.title("🌫 Live AQI Predictor (API-Ninjas)")
+st.title("Live AQI Predictor (API-Ninjas)")
 st.write("Enter a city name to fetch live air quality data and predict AQI.")
 
 
